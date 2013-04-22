@@ -7,7 +7,7 @@ def get_commit_files(file_type):
 
   files = awk(
     grep(
-     cat("/tmp/git_hook"), "-P", "A|M.*.%s$" % file_type,
+     cat("/tmp/git_hook"), "-P", "(A|M).*.%s$" % file_type,
      _ok_code = [0, 1]
     ), "{print $2}", _iter = True
   )
