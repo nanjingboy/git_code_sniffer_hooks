@@ -12,5 +12,8 @@ def get_commit_files(file_type):
     ), "{print $2}", _iter = True
   )
 
+  if not files:
+    return None
+
   exten = ".%s" % file_type
   return [path[:path.rindex(exten) + len(exten)] for path in files]
