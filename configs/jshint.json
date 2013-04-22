@@ -1,0 +1,17 @@
+{
+  "curly": true, //把条件或循环写在大括号里
+  "eqeqeq": true, //使用===和!==替换==和!=
+  "noarg": true, //禁止使用arguments.caller和argument.callee
+  "noempty": true, //禁止出现空代码块
+  "onevar": true, //在function内部使用单var对变量进行声明
+  "camelcase": true, //强制变量名使用驼峰式风格或者大写字母加下划线风格
+  "white": true, //强制使用严格的空格
+  "latedef": true, //变量需要先定义，后使用
+  "forin": true, //在for...in...代码块中必须使用object.hasOwnProperty()方法对所操作的属性进行判断
+  "trailing": true, //禁止代码行最后留有空格
+  "nonew": true, //禁止出现 new object(); 这样的语句
+  "evil": true, //允许使用eval方法
+  "indent": 4, //缩进
+  "maxlen": 80, //最大列数
+  "quotmark": "double" //字符串字面值用双引号
+}
