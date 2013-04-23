@@ -45,7 +45,6 @@ def get_receive_errors(rev_old, rev_new):
   tmp_dir = create_tmp_dir()
   for path in files:
     system("git show %s:%s > %s" % (rev_new, path, tmp_dir + path))
-
     file_error = tail(
       jshint(
         "--config",
@@ -53,7 +52,6 @@ def get_receive_errors(rev_old, rev_new):
         tmp_dir + path, _ok_code = [0, 2]
       ), "-n", 1
     )
-
     if file_error:
       errors.append(colored(path + " " + str(file_error).strip("\n"), "red"))
 
