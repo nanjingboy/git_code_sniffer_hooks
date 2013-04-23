@@ -4,7 +4,7 @@
 
 ###安装最新稳定版Node
 >- sudo add-apt-repository ppa:chris-lea/node.js
->- sudo update
+>- sudo apt-get update
 >- sudo apt-get install nodejs
 
 ###安装jshint
