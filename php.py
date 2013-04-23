@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 from config import config
 from common import get_commit_files
-from sh import phpcs, awk
+from sh import phpcs
 from termcolor import colored
 
 def get_commit_errors():
