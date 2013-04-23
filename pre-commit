@@ -4,14 +4,19 @@ from sys import exit
 from termcolor import colored
 from config import config
 from javascript import get_commit_errors as get_javascript_errors
+from php import get_commit_errors as get_php_errors
 
 if __name__ == "__main__":
   javascript_errors = get_javascript_errors()
-  if not javascript_errors:
+  php_errors = get_php_errors()
+  if not javascript_errors and not php_errors:
     exit(0)
 
   print(colored("CodeSniffer check result: \n", "magenta"))
   if javascript_errors:
     print(javascript_errors)
+
+  if php_errors:
+    print(php_errors)
 
   exit(config.getboolean("commit", "REJECT_COMMIT"))
