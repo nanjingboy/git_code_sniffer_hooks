@@ -15,7 +15,7 @@
 ###获取相关代码
 >- mkdir ~/bin/
 >- cd ~/bin/
->- git clone git@github.com:NanJingBoy/git_code_sniffer_hooks.git
+>- git clone git://github.com/NanJingBoy/git_code_sniffer_hooks.git
 
 ###安装python相关依赖
 >- sudo apt-get install python-setuptools
