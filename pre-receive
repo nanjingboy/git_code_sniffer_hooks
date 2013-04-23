@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+from sys import stdin, exit
+from termcolor import colored
+from sh import cowsay
+from config import config
+from javascript import get_receive_errors as get_javascript_errors
+
+if __name__ == "__main__":
+  receive_able = True
+  empty_ref = config.get("receive", "EMPTY_REF")
+
+  for line in stdin:
+    rev_old, rev_new, ref = line.split(" ")
+    if rev_old == empty_ref or rev_new == empty_ref:
+      continue
+
+    print(colored("CodeSniffer check result:", "magenta"))
+    javascript_errors = get_javascript_errors(rev_old, rev_new)
+    if not javascript_errors:
+      print(colored(cowsay("Congratulations!!!"), "green", attrs = ["bold"]))
+    else:
+      receive_able = False
+      print(javascript_errors)
+
+  if receive_able:
+    exit(0)
+  else:
+    exit(config.getboolean("receive", "REJECT_RECEIVE"))
