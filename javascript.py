@@ -38,7 +38,6 @@ def get_receive_errors(rev_old, rev_new):
     return None
 
   files = get_receive_files(rev_old, rev_new, "js")
-
   if not files:
     return None
 
