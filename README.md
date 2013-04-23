@@ -1,16 +1,22 @@
 #安装配置
 
-##安装jshint
+##安装 [jshint](http://www.jshint.com/)
 
 ###安装最新稳定版Node
 >- sudo add-apt-repository ppa:chris-lea/node.js
 >- sudo apt-get update
 >- sudo apt-get install nodejs
 
-###安装jshint
+###安装 jshint
 >- sudo npm install jshint -g
 
-##安装git_hook
+##安装 phpcs
+>- sudo apt-get install php-pear
+>- sudo pear install PHP_CodeSniffer
+>- sudo phpcs --config-set encoding utf-8
+>- sudo phpcs --config-set default_standard Zend
+
+##安装 git_code_sniffer_hooks
 
 ###获取相关代码
 >- mkdir ~/bin/
