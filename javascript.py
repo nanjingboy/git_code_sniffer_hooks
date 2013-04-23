@@ -21,12 +21,11 @@ def get_commit_errors():
       path,  _ok_code = [0, 2]
     )
     if file_errors:
-      errors.append(str(file_errors))
+      errors.append(colored(file_errors, "red"))
 
   if errors:
     errors = colored(
-      "There are some errors in below javascript files:\n", "red",
-      attrs = ["dark"]
+      "There are some errors in below javascript files:\n\n", "magenta"
     ) + "\n".join(errors)
 
   return errors
