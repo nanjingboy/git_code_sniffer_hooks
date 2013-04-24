@@ -5,6 +5,7 @@ from termcolor import colored
 from sh import cowsay
 from config import config
 from javascript import get_receive_errors as get_javascript_errors
+from php import get_receive_errors as get_php_errors
 
 if __name__ == "__main__":
   receive_able = True
@@ -17,11 +18,16 @@ if __name__ == "__main__":
 
     print(colored("CodeSniffer check result:", "magenta"))
     javascript_errors = get_javascript_errors(rev_old, rev_new)
-    if not javascript_errors:
+    php_errors = get_php_errors(rev_old, rev_new)
+    if not javascript_errors and not php_errors:
       print(colored(cowsay("Congratulations!!!"), "green", attrs = ["bold"]))
     else:
       receive_able = False
-      print(javascript_errors)
+      if javascript_errors:
+        print(javascript_errors)
+
+      if php_errors:
+        print(php_errors)
 
   if receive_able:
     exit(0)
