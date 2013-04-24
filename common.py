@@ -2,7 +2,7 @@
 from os import system
 from sh import awk, grep, cat, mkdir, rm
 from termcolor import colored
-from config import config
+from config import config, except_paths
 
 def get_commit_errors(file_type, function):
   checkable = True
@@ -76,4 +76,11 @@ def _get_files(file_type, file_index):
     return None
 
   exten = ".%s" % file_type
-  return [path[:path.rindex(exten) + len(exten)] for path in files]
+  files =  [path[:path.rindex(exten) + len(exten)] for path in files]
+  if except_paths:
+    for except_path in except_paths:
+      for file_path in files:
+        if file_path.startswith(except_path):
+          files.remove(file_path)
+
+  return files
