@@ -1,16 +1,16 @@
 #安装配置
 
-##安装 [jshint](http://www.jshint.com/)
+##安装 jshint
 
-###安装最新稳定版Node
+###最新稳定版Node
 >- sudo add-apt-repository ppa:chris-lea/node.js
 >- sudo apt-get update
 >- sudo apt-get install nodejs
 
-###安装 jshint
+###jshint
 >- sudo npm install jshint -g
 
-##安装 phpcs
+##安装 PHP_CodeSniffer
 >- sudo apt-get install php-pear
 >- sudo pear install PHP_CodeSniffer
 >- sudo phpcs --config-set encoding utf-8
@@ -26,10 +26,12 @@
 ###安装python相关依赖
 >- sudo apt-get install python-setuptools
 >- sudo easy_install pip
->- sudo pip install -r ~/bin/git_code_sniffer_hooks/requirements.txt
+>- sudo pip install -r ~/bin/git_code_sniffer_hooks/requirements.txt  
 
 ###配置
 >- ln -s ~/bin/git_code_sniffer_hooks/pre-commit ~/workspace/test/.git/hooks/ （假设您的项目目录为~/workspace/test）
 
 #说明
->- 执行git commit 时，如果代码格式有误会禁止提交，可将~/bin/git_code_sniffer_hooks/configs/default.cfg中commit节点下的REJECT_COMMIT设置为False以改变其行为
+>- 服务器端需要安装cowsay （sudo apt-get install cowsay）
+>- 执行git commit时，如果代码格式有误会禁止提交，可将~/bin/git_code_sniffer_hooks/configs/default.cfg中commit节点下的REJECT_COMMIT设置为False以改变其行为
+>- 客户端执行git push时，如果代码格式有误服务器会禁止push，可将~/bin/git_code_sniffer_hooks/configs/default.cfg中receive节点下的REJECT_RECEIVE设置为False以改变其行为
