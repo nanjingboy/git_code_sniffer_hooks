@@ -30,8 +30,9 @@
 
 ###配置
 >- ln -s ~/bin/git_code_sniffer_hooks/pre-commit ~/workspace/test/.git/hooks/ （假设您的项目目录为~/workspace/test）
+>- ln -s ~/bin/git_code_sniffer_hooks/pre-receive ~/workspace/test/.git/hooks/ （服务端）
 
 #说明
->- 服务器端需要安装cowsay （sudo apt-get install cowsay）
+>- 服务端需要安装cowsay （sudo apt-get install cowsay）
 >- 执行git commit时，如果代码格式有误会禁止提交，可将~/bin/git_code_sniffer_hooks/configs/default.cfg中commit节点下的REJECT_COMMIT设置为False以改变其行为
->- 客户端执行git push时，如果代码格式有误服务器会禁止push，可将~/bin/git_code_sniffer_hooks/configs/default.cfg中receive节点下的REJECT_RECEIVE设置为False以改变其行为
+>- 客户端执行git push时，如果代码格式有误服务器会禁止push，可将~/bin/git_code_sniffer_hooks/configs/default.cfg中receive节点下的REJECT_RECEIVE设置为False以改变其行为（服务端）
