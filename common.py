@@ -1,25 +1,65 @@
 #-*- coding:utf-8 -*-
 from os import system
 from sh import awk, grep, cat, mkdir, rm
+from termcolor import colored
 from config import config
 
-def create_tmp_dir():
+def get_commit_errors(file_type, function):
+  checkable = True
+  if file_type == 'js':
+    checkable = config.getboolean("commit", "CHECK_JAVASCRIPT")
+  elif file_type == 'php':
+    checkable = config.getboolean("commit", "CHECK_PHP")
+
+  if not checkable:
+    return None
+
+  files = _get_commit_files(file_type)
+  if not files:
+    return None
+
+  errors = []
+  for path in files:
+    file_error = function(path)
+    if file_error:
+      errors.append(file_error)
+
+  if errors:
+    errors = colored(
+      "There are some errors in below %s files:\n\n" % file_type, "magenta"
+    ) + "\n".join(errors).strip("\n")
+
+  return errors
+
+def get_receive_errors(rev_old, rev_new, file_type, function):
+  checkable = True
+  if file_type == 'js':
+    checkable = config.getboolean("receive", "CHECK_JAVASCRIPT")
+  elif file_type == 'php':
+    checkable = config.getboolean("receive", "CHECK_PHP")
+
+  files = _get_receive_files(rev_old, rev_new, file_type)
+  if not files:
+    return None
+
   tmp_dir = config.get("receive", "TMP_DIR")
-  if tmp_dir:
-    mkdir("-p", tmp_dir)
+  mkdir("-p", tmp_dir)
 
-  return tmp_dir
+  errors = []
+  for path in files:
+    system("git show %s:%s > %s" % (rev_new, path, tmp_dir + path))
+    file_error = function(tmp_dir + path)
+    if file_error:
+      errors.append(path + file_error)
 
-def remove_tmp_dir():
-  tmp_dir = config.get("receive", "TMP_DIR")
-  if tmp_dir:
-    rm("-rf", tmp_dir)
+  rm("-rf", tmp_dir)
+  return "\n".join(errors)
 
-def get_commit_files(file_type):
+def _get_commit_files(file_type):
   system("git diff --cached --name-status > /tmp/git_hook")
   return _get_files(file_type, 2)
 
-def get_receive_files(rev_old, rev_new, file_type):
+def _get_receive_files(rev_old, rev_new, file_type):
   system("git diff-tree -r %s..%s > /tmp/git_hook" % (rev_old, rev_new))
   return _get_files(file_type, 6)
 
