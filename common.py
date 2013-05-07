@@ -47,6 +47,7 @@ def get_receive_errors(rev_old, rev_new, file_type, function):
 
   errors = []
   for path in files:
+    mkdir("-p", '/'.join((tmp_dir + path).split('/')[:-1]))
     system("git show %s:%s > %s" % (rev_new, path, tmp_dir + path))
     file_error = function(tmp_dir + path)
     if file_error:
