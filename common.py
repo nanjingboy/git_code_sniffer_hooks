@@ -6,9 +6,9 @@ from config import config, except_paths
 
 def get_commit_errors(file_type, function):
   checkable = True
-  if file_type == 'js':
+  if file_type == "js":
     checkable = config.getboolean("commit", "CHECK_JAVASCRIPT")
-  elif file_type == 'php':
+  elif file_type == "php":
     checkable = config.getboolean("commit", "CHECK_PHP")
 
   if not checkable:
@@ -33,9 +33,9 @@ def get_commit_errors(file_type, function):
 
 def get_receive_errors(rev_old, rev_new, file_type, function):
   checkable = True
-  if file_type == 'js':
+  if file_type == "js":
     checkable = config.getboolean("receive", "CHECK_JAVASCRIPT")
-  elif file_type == 'php':
+  elif file_type == "php":
     checkable = config.getboolean("receive", "CHECK_PHP")
 
   files = _get_receive_files(rev_old, rev_new, file_type)
@@ -47,7 +47,7 @@ def get_receive_errors(rev_old, rev_new, file_type, function):
 
   errors = []
   for path in files:
-    mkdir("-p", '/'.join((tmp_dir + path).split('/')[:-1]))
+    mkdir("-p", "/".join((tmp_dir + path).split("/")[:-1]))
     system("git show %s:%s > %s" % (rev_new, path, tmp_dir + path))
     file_error = function(tmp_dir + path)
     if file_error:
