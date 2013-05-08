@@ -43,8 +43,6 @@ def get_receive_errors(rev_old, rev_new, file_type, function):
     return None
 
   tmp_dir = config.get("receive", "TMP_DIR")
-  mkdir("-p", tmp_dir)
-
   errors = []
   for path in files:
     mkdir("-p", "/".join((tmp_dir + path).split("/")[:-1]))
