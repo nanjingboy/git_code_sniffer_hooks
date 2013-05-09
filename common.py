@@ -1,5 +1,5 @@
 #-*- coding:utf-8 -*-
-from os import system
+from os import path, system
 from sh import awk, grep, cat, mkdir, rm
 from termcolor import colored
 from config import config, except_paths
@@ -75,7 +75,8 @@ def _get_files(file_type, file_index):
     return None
 
   exten = ".%s" % file_type
-  files =  [path[:path.rindex(exten) + len(exten)] for path in files]
+  files = [file_path[:file_path.rindex(exten) + len(exten)] for file_path in files]
+  files = [file_path for file_path in files if path.exists(file_path)]
   if except_paths:
     for except_path in except_paths:
       for file_path in files:
