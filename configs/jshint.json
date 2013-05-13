@@ -13,6 +13,6 @@
   "evil": true, //允许使用eval方法
   "gcl": true, //Google Closure Linter
   "indent": 4, //缩进
-  "maxlen": 80, //最大列数
+  "maxlen": 120, //最大列数
   "quotmark": "single" //字符串字面值用单引号
 }
