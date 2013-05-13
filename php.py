@@ -3,6 +3,7 @@ from sh import phpcs
 from termcolor import colored
 from common import get_commit_errors as get_php_commit_errors
 from common import get_receive_errors as get_php_receive_errors
+from config import config
 
 def get_commit_errors():
   return get_php_commit_errors("php", _get_commit_file_error)
@@ -17,7 +18,7 @@ def _get_commit_file_error(path):
     error_type = error.split(' ')[1]
     if error_type == 'error':
       errors.append(colored(error, "red"))
-    else:
+    elif config.getboolean('common', 'DISPLAY_WARING'):
       errors.append(colored(error, "yellow"))
 
   return "\n".join(errors)
@@ -33,7 +34,10 @@ def _get_receive_file_error(path):
     errors = [str(error) for error in errors]
     errors = errors[-3].split(" ")
     error = colored("%s error(s)" % errors[3], "red")
-    warning = colored("%s warning(s)" % errors[6], "yellow")
-    return "    %s  %s" % (error, warning)
+    if config.getboolean('common', 'DISPLAY_WARING'):
+      warning = colored("%s warning(s)" % errors[6], "yellow")
+      return "    %s  %s" % (error, warning)
+
+    return "    %s" % error
 
   return None
