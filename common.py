@@ -44,12 +44,13 @@ def get_receive_errors(rev_old, rev_new, file_type, function):
 
   tmp_dir = config.get("receive", "TMP_DIR")
   errors = []
-  for path in files:
-    mkdir("-p", "/".join((tmp_dir + path).split("/")[:-1]))
-    system("git show %s:%s > %s" % (rev_new, path, tmp_dir + path))
-    file_error = function(tmp_dir + path)
-    if file_error:
-      errors.append(path + file_error)
+  for file_path in files:
+    mkdir("-p", "/".join((tmp_dir + file_path).split("/")[:-1]))
+    system("git show %s:%s > %s" % (rev_new, file_path, tmp_dir + file_path))
+    file_error = function(tmp_dir + file_path)
+    if path.exists(tmp_dir + file_path):
+      if file_error:
+        errors.append(file_path + file_error)
 
   rm("-rf", tmp_dir)
   return "\n".join(errors)
@@ -76,7 +77,6 @@ def _get_files(file_type, file_index):
 
   exten = ".%s" % file_type
   files = [file_path[:file_path.rindex(exten) + len(exten)] for file_path in files]
-  files = [file_path for file_path in files if path.exists(file_path)]
   if except_paths:
     for except_path in except_paths:
       for file_path in files:
