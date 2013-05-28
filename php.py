@@ -33,11 +33,14 @@ def _get_receive_file_error(path):
   if errors:
     errors = [str(error) for error in errors]
     errors = errors[-3].split(" ")
-    error = colored("%s error(s)" % errors[3], "red")
-    if config.getboolean('common', 'DISPLAY_WARING'):
+    error = None
+    if int(errors[3]) > 0:
+      error = colored("%s error(s)" % errors[3], "red")
+
+    if config.getboolean('common', 'DISPLAY_WARING') and int(errors[6]) > 0:
       warning = colored("%s warning(s)" % errors[6], "yellow")
       return "    %s  %s" % (error, warning)
 
-    return "    %s" % error
+    return "    %s" % error if error else None
 
   return None
