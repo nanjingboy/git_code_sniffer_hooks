@@ -1,20 +1,10 @@
 #安装配置
 
-##安装 jshint
+##安装 Node
 
-###最新稳定版Node
 >- sudo add-apt-repository ppa:chris-lea/node.js
 >- sudo apt-get update
 >- sudo apt-get install nodejs
-
-###jshint
->- sudo npm install jshint -g
-
-###安装jshint相关依赖
->- sudo npm install shelljs -g
->- sudo npm install underscore -g
->- sudo npm install events -g
->- sudo npm install console-browserify -g
 
 ##安装 PHP_CodeSniffer
 >- sudo apt-get install php-pear
@@ -28,6 +18,13 @@
 >- mkdir ~/bin/
 >- cd ~/bin/
 >- git clone git://github.com/NanJingBoy/git_code_sniffer_hooks.git
+
+###安装jshint以及相关依赖
+>- sudo npm install jshint
+>- sudo npm install shelljs
+>- sudo npm install underscore
+>- sudo npm install events
+>- sudo npm install console-browserify
 
 ###安装python相关依赖
 >- sudo apt-get install python-setuptools
