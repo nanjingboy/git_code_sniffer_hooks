@@ -19,7 +19,7 @@ def get_receive_errors(rev_old, rev_new):
 
 def _get_receive_file_error(path):
   errors = _get_error(path).split("\n")
-  return "     " + colored(len(errors), "red") if errors else None
+  return "     " + colored("%s error(s)" % len(errors), "red") if errors else None
 
 def _get_error(path):
   return  getoutput(
