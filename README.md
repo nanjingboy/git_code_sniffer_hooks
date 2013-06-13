@@ -21,11 +21,11 @@
 
 ###安装jshint以及相关依赖
 >- cd ~/bin/git_code_sniffer_hooks/
->- sudo npm install jshint
->- sudo npm install shelljs
->- sudo npm install underscore
->- sudo npm install events
->- sudo npm install console-browserify
+>- npm install jshint
+>- npm install shelljs
+>- npm install underscore
+>- npm install events
+>- npm install console-browserify
 
 ###安装python相关依赖
 >- sudo apt-get install python-setuptools
