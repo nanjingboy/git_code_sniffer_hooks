@@ -20,6 +20,7 @@
 >- git clone git://github.com/NanJingBoy/git_code_sniffer_hooks.git
 
 ###安装jshint以及相关依赖
+>- cd ~/bin/git_code_sniffer_hooks/
 >- sudo npm install jshint
 >- sudo npm install shelljs
 >- sudo npm install underscore
