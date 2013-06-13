@@ -10,6 +10,12 @@
 ###jshint
 >- sudo npm install jshint -g
 
+###安装jshint相关依赖
+>- sudo npm install shelljs -g
+>- sudo npm install underscore -g
+>- sudo npm install events -g
+>- sudo npm install console-browserify -g
+
 ##安装 PHP_CodeSniffer
 >- sudo apt-get install php-pear
 >- sudo pear install PHP_CodeSniffer
