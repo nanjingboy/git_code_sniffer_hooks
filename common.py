@@ -78,10 +78,13 @@ def _get_files(file_type, file_index):
 
   exten = ".%s" % file_type
   files = [file_path[:file_path.rindex(exten) + len(exten)] for file_path in files]
+  result = []
   if except_paths:
     for except_path in except_paths:
       for file_path in files:
-        if file_path.startswith(except_path):
-          files.remove(file_path)
+        if not file_path.startswith(except_path):
+          result.append(file_path)
+  else:
+    result = files
 
-  return files
+  return result
