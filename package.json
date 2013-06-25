@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "jshint": "2.1.x",
+    "shelljs": "0.1.x",
+    "underscore": "1.4.x",
+    "events": "0.x.x",
+    "console-browserify": "0.1.x"
+  }
+}

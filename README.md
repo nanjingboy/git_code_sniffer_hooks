@@ -21,16 +21,12 @@
 
 ###安装jshint以及相关依赖
 >- cd ~/bin/git_code_sniffer_hooks/
->- npm install jshint
->- npm install shelljs
->- npm install underscore
->- npm install events
->- npm install console-browserify
+>- npm install
 
 ###安装python相关依赖
 >- sudo apt-get install python-setuptools
 >- sudo easy_install pip
->- sudo pip install -r ~/bin/git_code_sniffer_hooks/requirements.txt  
+>- sudo pip install -r ~/bin/git_code_sniffer_hooks/requirements.txt
 
 ###配置
 >- ln -s ~/bin/git_code_sniffer_hooks/pre-commit ~/workspace/test/.git/hooks/ （假设您的项目目录为~/workspace/test）
