@@ -2,9 +2,9 @@
 #-*- coding:utf-8 -*-
 from sys import exit
 from termcolor import colored
-from config import config
-from javascript import get_commit_errors as get_javascript_errors
-from php import get_commit_errors as get_php_errors
+from lib.config import config
+from lib.javascript import get_commit_errors as get_javascript_errors
+from lib.php import get_commit_errors as get_php_errors
 
 if __name__ == "__main__":
   javascript_errors = get_javascript_errors()

@@ -6,7 +6,7 @@ try:
 except ImportError:
   from configparser import ConfigParser
 
-base_path = path.abspath(__file__ + "/../")
+base_path = path.abspath(__file__ + "/../../")
 
 except_paths = None
 with file("%s/configs/except.json" % base_path) as fp:

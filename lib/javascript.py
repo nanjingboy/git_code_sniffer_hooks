@@ -27,6 +27,6 @@ def _get_receive_file_error(path):
 
 def _get_error(path):
   return  getoutput(
-    "%s/jshint.js --config %s/configs/jshint.json %s"  %
+    "%s/jshint/jshint --config %s/configs/jshint.json %s"  %
     (base_path, base_path, path)
   )
