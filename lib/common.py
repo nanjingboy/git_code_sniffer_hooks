@@ -42,6 +42,9 @@ def get_receive_errors(rev_old, rev_new, file_type, function):
   elif file_type == "php":
     checkable = config.getboolean("receive", "CHECK_PHP")
 
+  if not checkable:
+    return None
+
   files = _get_receive_files(rev_old, rev_new, file_type)
   if not files:
     return None
