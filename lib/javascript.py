@@ -21,9 +21,9 @@ def _get_receive_file_error(path):
   error = _get_error(path)
   if error:
     error_count = len(error.split("\n")) - 2
-    return "     " + colored("%s error(s)" % error_count, "red"), error_count, 0
+    return "     " + colored("%s error(s)" % error_count, "red")
 
-  return None, 0, 0
+  return None
 
 def _get_error(path):
   return  getoutput("%s/jshint/jshint %s"  % (base_path, path))
