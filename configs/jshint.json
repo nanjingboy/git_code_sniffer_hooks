@@ -4,7 +4,6 @@
   "noarg": true, //禁止使用arguments.caller和argument.callee
   "noempty": true, //禁止出现空代码块
   "onevar": true, //在function内部使用单var对变量进行声明
-  "camelcase": true, //强制变量名使用驼峰式风格或者大写字母加下划线风格
   "white": true, //强制使用严格的空格
   "latedef": true, //变量需要先定义，后使用
   "forin": true, //在for...in...代码块中必须使用object.hasOwnProperty()方法对所操作的属性进行判断
