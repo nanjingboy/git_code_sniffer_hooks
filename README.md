@@ -9,8 +9,6 @@
 ##安装 PHP_CodeSniffer
 >- sudo apt-get install php-pear
 >- sudo pear install PHP_CodeSniffer
->- sudo phpcs --config-set encoding utf-8
->- sudo phpcs --config-set default_standard Zend
 
 ##安装 git_code_sniffer_hooks
 
@@ -31,6 +29,14 @@
 ###配置
 >- ln -s ~/bin/git_code_sniffer_hooks/pre-commit ~/workspace/test/.git/hooks/ （假设您的项目目录为~/workspace/test）
 >- ln -s ~/bin/git_code_sniffer_hooks/pre-receive ~/workspace/test/.git/hooks/ （服务端）
+
+#手动检测
+
+##php
+>- ~/bin/git_code_sniffer_hooks/phpcs/phpcs ~/demo.php
+
+##javascript
+>- ~/bin/git_code_sniffer_hooks/jshint/jshint ~/demo.js
 
 #说明
 >- 服务端需要安装cowsay （sudo apt-get install cowsay）
