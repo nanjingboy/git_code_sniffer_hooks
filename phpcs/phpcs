@@ -14,13 +14,17 @@ if (is_file(dirname(__FILE__).'/../CodeSniffer/CLI.php') === true) {
 }
 
 $isSetStandard = false;
+$isSetEncode = false;
 foreach ($_SERVER['argv'] as $index => $arg) {
     if ($index === 0) {
         continue;
     }
     if (strpos($arg, '--standard') === 0) {
         $isSetStandard = true;
-        break;
+    }
+
+    if (strpos($arg, "--encoding") === 0) {
+       $isSetEncode = true;
     }
 }
 
@@ -29,6 +33,14 @@ if ($isSetStandard === false) {
     array_push(
         $_SERVER['argv'],
         sprintf('--standard=%s', __DIR__ . '/ruleset.xml')
+    );
+}
+
+if ($isSetEncode === false) {
+    $_SERVER['argc'] += 1;
+    array_push(
+        $_SERVER['argv'],
+        '--encoding=utf-8'
     );
 }
 
