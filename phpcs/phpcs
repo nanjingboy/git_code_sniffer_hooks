@@ -1,0 +1,45 @@
+#!/usr/bin/php
+<?php
+error_reporting(E_ALL | E_STRICT);
+
+@include_once 'PHP/Timer.php';
+if (class_exists('PHP_Timer', false) === true) {
+    PHP_Timer::start();
+}
+
+if (is_file(dirname(__FILE__).'/../CodeSniffer/CLI.php') === true) {
+    include_once dirname(__FILE__).'/../CodeSniffer/CLI.php';
+} else {
+    include_once 'PHP/CodeSniffer/CLI.php';
+}
+
+$isSetStandard = false;
+foreach ($_SERVER['argv'] as $index => $arg) {
+    if ($index === 0) {
+        continue;
+    }
+    if (strpos($arg, '--standard') === 0) {
+        $isSetStandard = true;
+        break;
+    }
+}
+
+if ($isSetStandard === false) {
+    $_SERVER['argc'] += 1;
+    array_push(
+        $_SERVER['argv'],
+        sprintf('--standard=%s', __DIR__ . '/ruleset.xml')
+    );
+}
+
+$phpcs = new PHP_CodeSniffer_CLI();
+$phpcs->checkRequirements();
+
+$numErrors = $phpcs->process();
+if ($numErrors === 0) {
+    exit(0);
+} else {
+    exit(1);
+}
+
+?>
