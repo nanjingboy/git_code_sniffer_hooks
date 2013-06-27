@@ -11,7 +11,7 @@ def get_commit_errors():
 def _get_commit_file_error(path):
   file_errors = getoutput(
     "%s/phpcs/phpcs --report=emacs %s" % (base_path, path)
-  ).strip().split('\n')
+  ).split('\n')
   if not file_errors:
     return None
 
