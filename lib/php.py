@@ -9,9 +9,7 @@ def get_commit_errors():
   return get_php_commit_errors("php", _get_commit_file_error)
 
 def _get_commit_file_error(path):
-  file_errors = getoutput(
-    "%s/phpcs/phpcs --report=emacs %s" % (base_path, path)
-  ).split('\n')
+  file_errors = _get_error(path, "emacs")
   if not file_errors:
     return None
 
@@ -31,17 +29,13 @@ def get_receive_errors(rev_old, rev_new):
   )
 
 def _get_receive_file_error(path):
-  errors = getoutput(
-    "%s/phpcs/phpcs --report=summary %s" % (base_path, path)
-  ).split('\n')
-
-  if not errors:
+  file_errors = _get_error(path, "summary")
+  if not file_errors:
     return None
 
-  errors = [str(error) for error in errors]
-  errors = errors[-3].split(" ")
-  error_count = int(errors[3])
-  warning_count = int(errors[6])
+  file_error = file_errors[-2].split(" ")
+  error_count = int(file_error[3])
+  warning_count = int(file_error[6])
   error = colored("%s error(s)" % error_count, "red")
   warning = colored("%s warning(s)" % warning_count, "yellow")
 
@@ -52,3 +46,10 @@ def _get_receive_file_error(path):
     return "    %s" % (error if error_count > 0 else warning)
 
   return None
+
+def _get_error(path, report):
+  errors = getoutput(
+    "%s/phpcs/phpcs --report=%s %s" % (base_path, report, path)
+  ).split("\n")
+
+  return [error for error in errors if error]
