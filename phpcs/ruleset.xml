@@ -12,7 +12,6 @@
  <rule ref="PEAR.Functions.FunctionCallSignature"/>
  <rule ref="PEAR.Functions.ValidDefaultValue"/>
  <rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/>
- <rule ref="Squiz.Functions.GlobalFunction"/>
 
  <rule ref="Generic.Files.LineLength">
   <properties>
