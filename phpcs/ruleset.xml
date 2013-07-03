@@ -16,7 +16,8 @@
  <rule ref="Generic.Files.LineLength">
   <properties>
    <property name="lineLimit" value="120"/>
-  </properties>
+   <property name="absoluteLineLimit" value="120"/>
+ </properties>
  </rule>
 
  <!-- Use Unix newlines -->
