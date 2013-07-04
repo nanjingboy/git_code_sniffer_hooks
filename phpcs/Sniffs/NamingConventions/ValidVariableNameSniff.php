@@ -44,12 +44,6 @@ class PHPCS_Sniffs_NamingConventions_ValidVariableNameSniff extends Zend_Sniffs_
                     if (substr($objVarName, 0, 1) === '_') {
                         $objVarName = substr($objVarName, 1);
                     }
-
-                    if (preg_match('|\d|', $objVarName)) {
-                        $warning = 'Variable "%s" contains numbers but this is discouraged';
-                        $data    = array($originalVarName);
-                        $phpcsFile->addWarning($warning, $stackPtr, 'ContainsNumbers', $data);
-                    }
                 }
             }
         }
@@ -72,13 +66,6 @@ class PHPCS_Sniffs_NamingConventions_ValidVariableNameSniff extends Zend_Sniffs_
                 $varName = substr($varName, 1);
             }
         }
-
-        if (preg_match('|\d|', $varName)) {
-            $warning = 'Variable "%s" contains numbers but this is discouraged';
-            $data    = array($originalVarName);
-            $phpcsFile->addWarning($warning, $stackPtr, 'ContainsNumbers', $data);
-        }
-
     }
 
     protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
@@ -102,55 +89,6 @@ class PHPCS_Sniffs_NamingConventions_ValidVariableNameSniff extends Zend_Sniffs_
                 $data  = array($scope, $varName);
                 $phpcsFile->addError($error, $stackPtr, 'PrivateNoUnderscore', $data);
                 return;
-            }
-        }
-
-        if (preg_match('|\d|', $varName)) {
-            $warning = 'Variable "%s" contains numbers but this is discouraged';
-            $data    = array($varName);
-            $phpcsFile->addWarning($warning, $stackPtr, 'MemberVarContainsNumbers', $data);
-        }
-
-    }
-
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
-    {
-        $tokens = $phpcsFile->getTokens();
-
-        $phpReservedVars = array(
-            '_SERVER',
-            '_GET',
-            '_POST',
-            '_REQUEST',
-            '_SESSION',
-            '_ENV',
-            '_COOKIE',
-            '_FILES',
-            'GLOBALS'
-        );
-
-        if (preg_match_all('|[^\\\]\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)|', $tokens[$stackPtr]['content'], $matches) !== 0) {
-            foreach ($matches[1] as $varName) {
-                // If it's a php reserved var, then its ok.
-                if (in_array($varName, $phpReservedVars) === true) {
-                    continue;
-                }
-
-                // There is no way for us to know if the var is public or private,
-                // so we have to ignore a leading underscore if there is one and just
-                // check the main part of the variable name.
-                $originalVarName = $varName;
-                if (substr($varName, 0, 1) === '_') {
-                    if ($phpcsFile->hasCondition($stackPtr, array(T_CLASS, T_INTERFACE)) === true) {
-                        $varName = substr($varName, 1);
-                    }
-                }
-
-                if (preg_match('|\d|', $varName)) {
-                    $warning = 'Variable "%s" contains numbers but this is discouraged';
-                    $data    = array($originalVarName);
-                    $phpcsFile->addWarning($warning, $stackPtr, 'StringVarContainsNumbers', $data);
-                }
             }
         }
     }
