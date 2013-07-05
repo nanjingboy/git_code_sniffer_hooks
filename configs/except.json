@@ -1,5 +1,10 @@
 [
   "view",
   "extend",
-  "public/components"
+  "public/components",
+  "public/global/jquery",
+  "public/global/pdf2swf",
+  "public/global/flvplayer",
+  "public/global/highchart",
+  "public/global/seajs"
 ]
