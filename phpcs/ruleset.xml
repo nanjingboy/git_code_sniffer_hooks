@@ -10,8 +10,6 @@
     <rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 
-    <rule ref="Generic.WhiteSpace.ScopeIndent"/>
-
     <rule ref="Generic.Files.LineLength">
         <properties>
             <property name="lineLimit" value="120"/>
