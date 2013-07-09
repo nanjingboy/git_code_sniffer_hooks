@@ -22,4 +22,4 @@ def _get_receive_file_error(path):
   return "     " + colored("%s error(s)" % error.split("\n")[-1].split(" ")[0], "red") if error else None
 
 def _get_error(path):
-  return  getoutput("%s/jshint/jshint %s"  % (base_path, path))
+  return  getoutput("%s/bin/jshint %s"  % (base_path, path))

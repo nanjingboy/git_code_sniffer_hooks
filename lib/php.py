@@ -49,7 +49,7 @@ def _get_receive_file_error(path):
 
 def _get_error(path, report):
   errors = getoutput(
-    "%s/phpcs/phpcs --report=%s %s" % (base_path, report, path)
+    "%s/bin/phpcs --report=%s %s" % (base_path, report, path)
   ).split("\n")
 
   return [error for error in errors if error]

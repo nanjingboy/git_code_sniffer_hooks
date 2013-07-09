@@ -32,7 +32,7 @@ if ($isSetStandard === false) {
     $_SERVER['argc'] += 1;
     array_push(
         $_SERVER['argv'],
-        sprintf('--standard=%s', __DIR__ . '/ruleset.xml')
+        sprintf('--standard=%s', __DIR__ . '/../phpcs/ruleset.xml')
     );
 }
 

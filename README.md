@@ -33,10 +33,10 @@
 #手动检测
 
 ##php
->- ~/bin/git_code_sniffer_hooks/phpcs/phpcs ~/demo.php
+>- ~/bin/git_code_sniffer_hooks/bin/phpcs ~/demo.php
 
 ##javascript
->- ~/bin/git_code_sniffer_hooks/jshint/jshint ~/demo.js
+>- ~/bin/git_code_sniffer_hooks/bin/jshint ~/demo.js
 
 #说明
 >- 服务端需要安装cowsay （sudo apt-get install cowsay）

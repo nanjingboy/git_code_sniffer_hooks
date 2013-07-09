@@ -5,4 +5,4 @@ if (process.argv.indexOf("--config") === -1) {
   process.argv.push(__dirname + "/../configs/jshint.json");
 }
 
-require("./cli").interpret(process.argv);
+require(__dirname + "/../jshint/cli").interpret(process.argv);
