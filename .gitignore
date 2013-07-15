@@ -1,2 +1,5 @@
 *.pyc
+composer.lock
 node_modules/
+vendor/
+php-bin/

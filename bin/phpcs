@@ -1,17 +1,7 @@
 #!/usr/bin/php
 <?php
 error_reporting(E_ALL | E_STRICT);
-
-@include_once 'PHP/Timer.php';
-if (class_exists('PHP_Timer', false) === true) {
-    PHP_Timer::start();
-}
-
-if (is_file(dirname(__FILE__).'/../CodeSniffer/CLI.php') === true) {
-    include_once dirname(__FILE__).'/../CodeSniffer/CLI.php';
-} else {
-    include_once 'PHP/CodeSniffer/CLI.php';
-}
+include_once __DIR__ . '/../vendor/autoload.php';
 
 $isSetStandard = false;
 $isSetEncode = false;
@@ -44,6 +34,11 @@ if ($isSetEncode === false) {
     );
 }
 
+
+
+if (class_exists('PHP_Timer', false) === true) {
+    PHP_Timer::start();
+}
 $phpcs = new PHP_CodeSniffer_CLI();
 $phpcs->checkRequirements();
 
@@ -53,5 +48,3 @@ if ($numErrors === 0) {
 } else {
     exit(1);
 }
-
-?>
