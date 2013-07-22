@@ -6,5 +6,6 @@
   "public/global/pdf2swf",
   "public/global/flvplayer",
   "public/global/highchart",
-  "public/global/seajs"
+  "public/global/seajs",
+  "public/visual/flvplayer"
 ]
