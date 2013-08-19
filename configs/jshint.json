@@ -12,6 +12,7 @@
   "evil": true, //允许使用eval方法
   "sub": true, //允许以各种形式的下标来访问对象
   "swindent": true, //switch表达式中case增加一级缩进
+  "loopfunc": true, //允许在循环中定义方法
   "gcl": true, //Google Closure Linter
   "indent": 4, //缩进
   "maxlen": 120, //最大列数
