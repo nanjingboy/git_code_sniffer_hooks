@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "jshint": "2.1.x",
+    "jshint": "2.1.4",
     "shelljs": "0.1.x",
     "underscore": "1.4.x",
     "events": "0.x.x",
