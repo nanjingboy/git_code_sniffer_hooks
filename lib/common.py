@@ -1,6 +1,7 @@
 #-*- coding:utf-8 -*-
 from os import path, system
 from sh import awk, grep, cat, mkdir, rm
+from sys import stdin
 from termcolor import colored
 from config import config, except_paths
 
@@ -17,6 +18,23 @@ def get_commit_errors(file_type, function):
   files = _get_commit_files(file_type)
   if not files:
     return None
+
+  #Get files are both in cached zone and modified zone
+  system("git diff --name-status > /tmp/git_hook")
+  modified_files = _get_files(file_type, 2)
+  if modified_files:
+    #Ask user whether add a file in modified zone to commit
+    modified_files = [modified_file for modified_file in modified_files if modified_file in files]
+    stdin = open('/dev/tty')
+    for modified_file in modified_files:
+      print(
+        'File %s has been modified but not in the cached zone, add it into ? [Y|n]' %
+        colored(modified_file, 'red')
+      )
+      if not stdin.readline().strip().lower().startswith('n'):
+        system('git add %s' % modified_file)
+
+    stdin.close()
 
   errors = []
   for file_path in files:
