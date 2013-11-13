@@ -42,7 +42,7 @@ def _get_receive_file_error(path):
   if error_count > 0 and warning_count > 0:
     return "    %s  %s" % (error, warning)
 
-  if error_count > 0 or warning_count:
+  if error_count > 0 or warning_count > 0:
     return "    %s" % (error if error_count > 0 else warning)
 
   return None
