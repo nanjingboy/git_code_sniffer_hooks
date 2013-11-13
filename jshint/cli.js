@@ -1,6 +1,6 @@
 var cli = require('jshint/src/cli/cli'),
     defReporter = require("jshint/src/reporters/default").reporter,
-    shelljs = require("shelljs"),
+    shelljs = require("jshint/node_modules/shelljs"),
     jsHint = require("./jshint").JSHINT;
 
 cli.run = function (options) {

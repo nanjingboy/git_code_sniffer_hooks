@@ -32,7 +32,7 @@
 /*global console:true */
 /*exported console */
 
-var _        = require("underscore");
+var _        = require("jshint/node_modules/underscore");
 var events   = require("events");
 var vars     = require("jshint/src/shared/vars.js");
 var messages = require("jshint/src/shared/messages.js");
@@ -44,7 +44,7 @@ var style    = require("jshint/src/stable/style.js");
 // We need this module here because environments such as IE and Rhino
 // don't necessarilly expose the 'console' API and browserify uses
 // it to log things. It's a sad state of affair, really.
-var console = require("console-browserify");
+var console = require("jshint/node_modules/console-browserify");
 
 // We build the application inside a function so that we produce only a singleton
 // variable. That function will be invoked immediately, and its return value is
